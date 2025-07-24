@@ -1,0 +1,44 @@
+# Ignore node_modules in any subdirectory
+**/node_modules/
+
+# Ignore package manager lock files (optional, remove if you want to commit them)
+**/package-lock.json
+**/yarn.lock
+
+# Ignore React build output folders
+**/build/
+**/dist/
+
+# Ignore environment variable files
+**/.env
+**/.env.local
+**/.env.development
+**/.env.test
+**/.env.production
+
+# Ignore Node.js logs and temporary files
+*.log
+**/*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Ignore test coverage reports
+**/coverage/
+
+# Ignore editor and IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Ignore Windows-specific files
+Thumbs.db
+Desktop.ini
+
+# Ignore macOS-specific files (in case you collaborate or use a Mac later)
+.DS_Store
+
+# Ignore temporary files
+**/*.tmp
+**/*.cache
