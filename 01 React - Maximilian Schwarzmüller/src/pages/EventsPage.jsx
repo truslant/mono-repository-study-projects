@@ -1,31 +1,29 @@
-import { Link } from 'react-router-dom';
+import { useLoaderData } from 'react-router-dom'
+import axios from 'axios';
 
-const EventsPage = () => {
-    const eventsArray = [
-        { id: 1, description: '1st event' },
-        { id: 2, description: '2nd event' },
-        { id: 3, description: '3rd event' },
-    ]
 
-    const events = eventsArray.map((event) => {
-        return (
-            <li>
-                <Link
-                    to={`${event.id}`}
-                    relative='path'
-                    key={event.id}>{event.description}</Link>
-            </li >
-        )
-    })
+import EventsList from '../components/EventsList';
 
+function EventsPage() {
+    const fetchedEvents = useLoaderData();
     return (
-        <>
-            <h1>EventsPage</h1>
-            <ul>
-                {events}
-            </ul>
-        </>
-    )
+        <EventsList events={fetchedEvents} />
+    );
 }
 
 export default EventsPage;
+
+export const eventsLoader = async () => {
+    const eventsList = await axios.get('http://localhost:8080/events');
+    if (!eventsList) {
+        throw new Response(
+            JSON.stringify({
+                message: 'Internal Server Error'
+            }),
+            {
+                status: 500
+            }
+        )
+    }
+    return eventsList.data.events;
+}
