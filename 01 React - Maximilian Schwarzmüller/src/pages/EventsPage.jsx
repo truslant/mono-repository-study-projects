@@ -1,22 +1,11 @@
 import { useLoaderData } from 'react-router-dom'
 import axios from 'axios';
 
-
-import EventsList from '../components/EventsList';
-
-function EventsPage() {
-    const fetchedEvents = useLoaderData();
-import { useLoaderData } from 'react-router-dom'
-import axios from 'axios';
-
-
 import EventsList from '../components/EventsList';
 
 function EventsPage() {
     const fetchedEvents = useLoaderData();
     return (
-        <EventsList events={fetchedEvents} />
-    );
         <EventsList events={fetchedEvents} />
     );
 }
