@@ -11,6 +11,7 @@
     "start:server": "json-server --watch db.json --port 3005"
   },
   "dependencies": {
+    "@faker-js/faker": "^9.9.0",
     "@reduxjs/toolkit": "^2.8.2",
     "json-server": "^1.0.0-beta.3",
     "react": "^19.1.0",

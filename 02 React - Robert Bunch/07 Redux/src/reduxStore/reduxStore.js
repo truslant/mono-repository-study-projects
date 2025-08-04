@@ -18,6 +18,8 @@ const reduxStore = configureStore({
 
 setupListeners(reduxStore.dispatch);
 
+window.store = reduxStore
+
 export { reduxStore }
 
 export { useFetchFrozenFoodQuery } from "./storeSlices/frozenFoodSlice";

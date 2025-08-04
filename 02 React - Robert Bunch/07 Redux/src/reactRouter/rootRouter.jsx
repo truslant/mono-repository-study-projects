@@ -30,6 +30,21 @@ const rootRouter = createBrowserRouter([
                     } catch (error) {
                         throw new Error('Failed to retreive the data from server')
                     }
+                },
+                action: async ({ request, params }) => {
+                    const formData = await request.formData();
+                    const action = formData.get('actionType')
+                    try {
+                        if (action === 'addProduct') {
+                            await reduxStore.dispatch(frozenFoodSlice.endpoints.addFrozenFood.initiate()).unwrap()
+                        } else if (action === 'deleteProduct') {
+                            const productId = formData.get('productId')
+                            await reduxStore.dispatch(frozenFoodSlice.endpoints.removeFrozenFood.initiate(productId)).unwrap()
+                        }
+                        return { success: true }
+                    } catch (error) {
+                        throw new Error('Add/Remove Product failed')
+                    }
                 }
             },
             {
