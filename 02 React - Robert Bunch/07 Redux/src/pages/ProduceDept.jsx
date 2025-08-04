@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux"
 
 const ProduceDept = () => {
-    const produceDeptState = (state => state.produceSlice)
+    const produceDeptState = useSelector(state => state.produceSlice)
 
     const produceFood = produceDeptState.map((food, index) => <li key={index}>{food.food} - {food.quantity}</li>)
 
@@ -14,3 +14,5 @@ const ProduceDept = () => {
         </>
     )
 }
+
+export default ProduceDept

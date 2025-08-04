@@ -1,14 +1,12 @@
-import './App.css'
+import { RouterProvider } from 'react-router-dom'
+import rootRouter from './reactRouter/rootRouter.jsx'
 
-import FrozenDepartment from './components/FrozenDept'
+import './App.css'
 
 function App() {
 
   return (
-    <>
-      <h1>This is App component</h1>
-      <FrozenDepartment />
-    </>
+    <RouterProvider router={rootRouter} />
   )
 }
 

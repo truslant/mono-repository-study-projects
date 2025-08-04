@@ -1,0 +1,58 @@
+{
+  "frozenFood": [
+    {
+      "id": 1,
+      "food": "IceCream",
+      "quantity": 10
+    },
+    {
+      "id": 2,
+      "food": "Frozen Candies",
+      "quantity": 21
+    },
+    {
+      "id": 3,
+      "food": "Frozen Pizza",
+      "quantity": 25
+    }
+  ],
+  "meat": [
+    {
+      "id": 1,
+      "food": "chicken breast",
+      "quantity": 34
+    },
+    {
+      "id": 2,
+      "food": "bacon",
+      "quantity": 35
+    },
+    {
+      "id": 3,
+      "food": "mahi mahi",
+      "quantity": 1
+    },
+    {
+      "id": 4,
+      "food": "salmon",
+      "quantity": 23
+    }
+  ],
+  "produce": [
+    {
+      "id": 1,
+      "food": "lettuce",
+      "quantity": 14
+    },
+    {
+      "id": 2,
+      "food": "turnips",
+      "quantity": 11
+    },
+    {
+      "id": 3,
+      "food": "apples",
+      "quantity": 35
+    }
+  ]
+}

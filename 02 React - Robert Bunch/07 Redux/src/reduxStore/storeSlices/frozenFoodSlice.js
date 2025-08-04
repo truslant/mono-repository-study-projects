@@ -1,20 +1,23 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 
-const frozenFoodInitialState = [
-    { food: 'IceCream', quantity: 10 },
-    { food: 'Frozen Candies', quantity: 21 },
-    { food: 'Frozen Pizza', quantity: 25 },
-]
-
-const frozenFoodSlice = createSlice({
-    name: 'frozenFood',
-    initialState: frozenFoodInitialState,
-    reducers: {
-        getFood: (state, action) => {
-            return state
+const frozenFoodSlice = createApi({
+    reducerPath: 'frozenFoodSlice',
+    baseQuery: fetchBaseQuery({
+        baseUrl: 'http://localhost:3005/'
+    }),
+    endpoints(builder) {
+        return {
+            fetchFrozenFood: builder.query({
+                query: () => {
+                    return {
+                        url: '/frozenFood',
+                        method: 'GET'
+                    }
+                }
+            })
         }
     }
 })
 
-export const frozenFoodSliceActions = frozenFoodSlice.actions
-export const frozenFoodSliceReducers = frozenFoodSlice.reducer
+export { frozenFoodSlice }
+export const { useFetchFrozenFoodQuery } = frozenFoodSlice

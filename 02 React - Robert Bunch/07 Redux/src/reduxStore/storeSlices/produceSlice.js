@@ -1,9 +1,9 @@
 import { createSlice } from "@reduxjs/toolkit";
 
 const produceSliceInitialState = [
-    { foor: "lettuce", quantity: 14 },
-    { foor: "turnips", quantity: 11 },
-    { foor: "apples", quantity: 35 },
+    { food: "lettuce", quantity: 14 },
+    { food: "turnips", quantity: 11 },
+    { food: "apples", quantity: 35 },
 ]
 
 const produceSlice = createSlice({
