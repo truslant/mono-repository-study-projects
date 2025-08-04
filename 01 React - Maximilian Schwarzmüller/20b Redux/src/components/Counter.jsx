@@ -1,19 +1,17 @@
 import classes from './Counter.module.css';
 import { useSelector, useDispatch } from 'react-redux'
-// import { Component } from 'react'
-// import { connect } from 'react-redux'
 
-import { counterSliceActions } from '../reduxStore';
+import { counterSliceActions } from '../reduxStore/counterSlice';
 
 const Counter = () => {
   const toggleCounterHandler = () => {
     dispatch(counterSliceActions.toogleShow())
   };
 
-  const counter = useSelector(state => state.counter);
+  const counter = useSelector(state => state.counterSlice.counter);
   const dispatch = useDispatch();
 
-  const isShown = useSelector(state => state.toggleShow)
+  const isShown = useSelector(state => state.counterSlice.toggleShow)
 
   const incrementHandler = () => {
     dispatch(counterSliceActions.increment());
