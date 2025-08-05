@@ -1,6 +1,7 @@
 import { useRouteLoaderData } from "react-router-dom";
 import { Form } from "react-router-dom";
 import ProductLineItem from "../components/ProductLineItem";
+import AddProductButton from "../components/AddProductButton";
 
 const FrozenDepartment = () => {
 
@@ -11,10 +12,7 @@ const FrozenDepartment = () => {
     return (
         <>
             <h3>The frozen food department</h3>
-            <Form method="POST">
-                <input type="hidden" name="actionType" value="addProduct" />
-                <button type="submit">+ Add Product </button>
-            </Form>
+            <AddProductButton />
             <ul>
                 {frozenFoodInventory}
             </ul>

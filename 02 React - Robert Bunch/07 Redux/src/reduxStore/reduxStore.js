@@ -1,18 +1,19 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { produceSliceReducer } from "./storeSlices/produceSlice";
-import { meatSliceReducer } from "./storeSlices/meatSlice";
+
+import { setupListeners } from "@reduxjs/toolkit/query";
 
 import { frozenFoodSlice } from "./storeSlices/frozenFoodSlice";
-import { setupListeners } from "@reduxjs/toolkit/query";
+import { meatSlice } from "./storeSlices/meatSlice";
+import { produceSlice } from "./storeSlices/produceSlice";
 
 const reduxStore = configureStore({
     reducer: {
         [frozenFoodSlice.reducerPath]: frozenFoodSlice.reducer,
-        produceSlice: produceSliceReducer,
-        meatSlice: meatSliceReducer,
+        [meatSlice.reducerPath]: meatSlice.reducer,
+        [produceSlice.reducerPath]: produceSlice.reducer
     },
     middleware: (getDefaultMiddleware) => {
-        return getDefaultMiddleware().concat(frozenFoodSlice.middleware);
+        return getDefaultMiddleware().concat(frozenFoodSlice.middleware).concat(meatSlice.middleware).concat(produceSlice.middleware);
     }
 });
 
@@ -22,7 +23,4 @@ window.store = reduxStore
 
 export { reduxStore }
 
-export { useFetchFrozenFoodQuery } from "./storeSlices/frozenFoodSlice";
-
 export { produceSliceActions } from './storeSlices/produceSlice'
-export { meatSliceActions } from './storeSlices/meatSlice'

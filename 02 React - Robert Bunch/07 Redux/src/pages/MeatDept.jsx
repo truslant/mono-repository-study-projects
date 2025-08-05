@@ -1,17 +1,19 @@
-import { useSelector } from "react-redux"
+import { useRouteLoaderData } from "react-router-dom"
+import { Form } from "react-router-dom"
+import ProductLineItem from "../components/ProductLineItem"
+import AddProductButton from "../components/AddProductButton"
 
 const MeatDept = () => {
-    const meatDeptState = useSelector(state => state.meatSlice)
-    const meatProducts = meatDeptState.map((food, index) => {
+    const meatDeptState = useRouteLoaderData('meat')
+    const meatProducts = meatDeptState.map((food) => {
         return (
-            <li key={index}>
-                {food.food} - {food.quantity}
-            </li>
+            <ProductLineItem key={food.id} food={food} />
         )
     })
     return (
         <>
             <h3>Meat Department page</h3>
+            <AddProductButton />
             <ul>
                 {meatProducts}
             </ul>
