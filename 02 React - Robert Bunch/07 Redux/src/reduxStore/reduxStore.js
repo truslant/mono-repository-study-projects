@@ -22,5 +22,3 @@ setupListeners(reduxStore.dispatch);
 window.store = reduxStore
 
 export { reduxStore }
-
-export { produceSliceActions } from './storeSlices/produceSlice'

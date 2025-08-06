@@ -16,7 +16,7 @@ const meatSlice = createApi({
                         method: 'GET'
                     }
                 },
-                providesTags: (result, error, art) => {
+                providesTags: (result, error, arg) => {
                     const meatItemTags = result.map(meatItem => {
                         return { type: 'meat', id: meatItem.id }
                     })
@@ -50,6 +50,20 @@ const meatSlice = createApi({
                 },
                 invalidatesTags: (result, error, argProductId) => {
                     return [{ type: 'meat', id: argProductId }]
+                }
+            }),
+            updateMeatQty: builder.mutation({
+                query: ({ productId, quantity }) => {
+                    return {
+                        url: `/meat/${productId}`,
+                        method: 'PATCH',
+                        body: {
+                            quantity
+                        }
+                    }
+                },
+                invalidatesTags: (result, error, { productId }) => {
+                    return [{ type: 'meat', id: productId }]
                 }
             })
         }

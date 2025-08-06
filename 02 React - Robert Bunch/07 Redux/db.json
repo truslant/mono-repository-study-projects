@@ -1,78 +1,68 @@
 {
   "frozenFood": [
     {
-      "id": "dd3b",
-      "food": "Frozen Cauliflower Penne",
-      "quantity": 0
-    },
-    {
-      "id": "a9fe",
-      "food": "Frozen Purple Carrot Salad",
-      "quantity": 6
-    },
-    {
       "id": "778a",
       "food": "Frozen Tagine-rubbed Chicken Salad",
-      "quantity": 18
+      "quantity": 19
     },
     {
       "id": "19be",
       "food": "Frozen Bruschette With Tomato",
-      "quantity": 15
+      "quantity": 12
     },
     {
       "id": "082e",
       "food": "Frozen Sultana-infused Turkey Roast",
       "quantity": 1
+    },
+    {
+      "id": "ddf0",
+      "food": "Frozen Tikka Masala-rubbed Duck Salad",
+      "quantity": 13
+    },
+    {
+      "id": "38ad",
+      "food": "Frozen Teriyaki Chicken Donburi",
+      "quantity": 11
     }
   ],
   "meat": [
-    {
-      "id": "b7ba",
-      "food": "Yamal emu",
-      "quantity": 17
-    },
-    {
-      "id": "ab0e",
-      "food": "Buddhist ostrich",
-      "quantity": 12
-    },
-    {
-      "id": "57c4",
-      "food": "Filipino lamb",
-      "quantity": 2
-    },
-    {
-      "id": "61d5",
-      "food": "Egyptian ostrich",
-      "quantity": 8
-    },
     {
       "id": "50a7",
       "food": "Bulgarian turkey",
       "quantity": 15
     },
     {
-      "id": "dff0",
-      "food": "Mordovian crocodile",
-      "quantity": 6
+      "id": "0725",
+      "food": "Kurdish lamb",
+      "quantity": 13
     }
   ],
   "produce": [
     {
-      "id": "1",
-      "food": "lettuce",
-      "quantity": 14
+      "id": "6c0b",
+      "food": "Vietnamese squash",
+      "quantity": 18
     },
     {
-      "id": "2",
-      "food": "turnips",
-      "quantity": 11
+      "id": "40e2",
+      "food": "Malaysian Indian spinach",
+      "quantity": 7
     },
     {
-      "id": "3",
-      "food": "apples",
-      "quantity": 35
+      "id": "23b7",
+      "food": "Hyderabad arugula",
+      "quantity": 5
+    },
+    {
+      "id": "d068",
+      "food": "Cantonese pumpkin",
+      "quantity": 18
+    },
+    {
+      "id": "0b12",
+      "food": "Inuit rhubarb",
+      "quantity": 8
     }
   ]
 }

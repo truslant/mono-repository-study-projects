@@ -49,7 +49,21 @@ const produceSlice = createApi({
                 invalidatesTags: (result, error, argProductId) => {
                     return [{ type: 'produce', id: argProductId }]
                 }
-            })
+            }),
+            updateProduceQty: builder.mutation({
+                query: ({ productId, quantity }) => {
+                    return {
+                        url: `/produce/${productId}`,
+                        method: 'PATCH',
+                        body: {
+                            quantity
+                        }
+                    }
+                },
+                invalidatesTags: (result, error, { productId }) => {
+                    return [{ type: 'produce', id: productId }]
+                }
+            }),
         }
     }
 })

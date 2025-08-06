@@ -1,13 +1,17 @@
-import { useSelector } from "react-redux"
+import { useRouteLoaderData } from "react-router-dom"
+import ProductLineItem from "../components/ProductLineItem"
+import AddProductButton from "../components/AddProductButton"
 
 const ProduceDept = () => {
-    const produceDeptState = useSelector(state => state.produceSlice)
+    
+    const produceDeptState = useRouteLoaderData('produce')
 
-    const produceFood = produceDeptState.map((food, index) => <li key={index}>{food.food} - {food.quantity}</li>)
+    const produceFood = produceDeptState.map((food) => (<ProductLineItem key={food.id} food={food} />))
 
     return (
         <>
             <h3>Produce Department</h3>
+            <AddProductButton />
             <ul>
                 {produceFood}
             </ul>

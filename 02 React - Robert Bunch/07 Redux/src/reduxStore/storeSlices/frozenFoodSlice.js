@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import { faker } from "@faker-js/faker";
+import { reduxStore } from "../reduxStore";
 
 const frozenFoodSlice = createApi({
     reducerPath: 'frozenFoodSlice',
@@ -49,11 +50,24 @@ const frozenFoodSlice = createApi({
                 invalidatesTags: (result, error, argProductId) => {
                     return [{ type: 'frozenFood', id: argProductId }]
                 }
+            }),
+            updateFrozenFoodQty: builder.mutation({
+                query: ({ productId, quantity }) => {
+                    return {
+                        url: `/frozenFood/${productId}`,
+                        method: 'PATCH',
+                        body: {
+                            quantity
+                        }
+                    }
+                },
+                invalidatesTags: (result, error, { productId }) => {
+                    return [{ type: 'frozenFood', id: productId }]
+                }
             })
-
         }
     }
 })
 
 export { frozenFoodSlice }
-export const { useFetchFrozenFoodQuery } = frozenFoodSlice
+export const { useFetchFrozenFoodQuery } = frozenFoodSlice;
