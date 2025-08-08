@@ -4,23 +4,44 @@ import axios from 'axios';
 class CityWeather extends Component {
     constructor() {
         super()
-        this.state = { city: 'London' }
+        this.state = {
+            cityData: {}
+        }
     }
 
-    handleChange(event) {
-        this.setState({ city: event.taget.value })
+    async componentDidMount() {
+        this.getWeather()
     }
+
+    async componentDidUpdate(oldProps) {
+        if (oldProps.city !== this.props.city) {
+            this.getWeather()
+        }
+    }
+
+    async getWeather() {
+        const url = `https://api.openweathermap.org/data/2.5/weather?q=${this.props.city}&units=imperial&appid=e312dbeb8840e51f92334498a261ca1d`
+
+        const resp = await axios.get(url);
+        this.setState({ cityData: resp.data })
+        console.log(resp.data)
+    }
+
     render() {
+
+        if (!this.state.cityData.name) {
+            return (
+                <h1>Loading...</h1>
+            )
+        }
+
+        const iconUrl = `http://openweathermap.org/img/w/${this.state.cityData.weather[0].icon}.png`
+        
         return (
-            <div>
-                <h1> CityWeather </h1>
-                <input
-                    type="text"
-                    name="city"
-                    id='city'
-                    value={this.state.city}
-                    onChange={this.handleChange}
-                />
+
+            <div className='container'>
+                <div className='city-name'>{this.state.cityData.name}</div>
+                <div className='temp'>{this.state.cityData.main.temp} <img src={iconUrl} /> </div>
             </div>
 
         )

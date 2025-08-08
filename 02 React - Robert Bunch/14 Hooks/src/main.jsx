@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.jsx'
 import WeatherApp from './WeatherApp'
-import CityWeather from './CityWeather.jsx'
+import WeatherAppHooks from './WeatherAppHooks.jsx'
 
 // createRoot(document.getElementById('root')).render(
 //   <StrictMode>
@@ -13,7 +13,7 @@ import CityWeather from './CityWeather.jsx'
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
-    <WeatherApp />
+    <WeatherAppHooks />
   </StrictMode>,
 )
 
