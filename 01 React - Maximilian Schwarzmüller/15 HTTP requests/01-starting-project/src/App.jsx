@@ -1,0 +1,128 @@
+import { useRef, useState, useCallback, useEffect } from 'react';
+
+import Places from './components/Places.jsx';
+import Modal from './components/Modal.jsx';
+import DeleteConfirmation from './components/DeleteConfirmation.jsx';
+import logoImg from './assets/logo.png';
+import AvailablePlaces from './components/AvailablePlaces.jsx';
+import { fetchUserPlaces } from './fetchLocations.js';
+
+import { updateUserPlaces } from './fetchLocations.js';
+import ErrorPage from './components/ErrorPage.jsx';
+
+function App() {
+  const selectedPlace = useRef();
+
+  const [userPlaces, setUserPlaces] = useState([]);
+  const [errorUpdatingPlaces, setErrorUpdatingPlaces] = useState()
+  const [modalIsOpen, setModalIsOpen] = useState(false);
+
+  const [fetching, setFetching] = useState(false)
+  const [error, setError] = useState();
+
+  useEffect(() => {
+    (async function () {
+      setFetching(true)
+      try {
+        const result = await fetchUserPlaces()
+        setUserPlaces(result)
+      } catch (error) {
+        setError({ message: error.message || 'Failed to fetch user places...' })
+      }
+      setFetching(false)
+    })()
+  }, [])
+
+
+  function handleStartRemovePlace(place) {
+    setModalIsOpen(true);
+    selectedPlace.current = place;
+  }
+
+  function handleStopRemovePlace() {
+    setModalIsOpen(false);
+  }
+
+  async function handleSelectPlace(selectedPlace) {
+    setUserPlaces((prevPickedPlaces) => {
+      if (!prevPickedPlaces) {
+        prevPickedPlaces = [];
+      }
+      if (prevPickedPlaces.some((place) => place.id === selectedPlace.id)) {
+        return prevPickedPlaces;
+      }
+      return [selectedPlace, ...prevPickedPlaces];
+    });
+
+    try {
+      await updateUserPlaces([selectedPlace, ...userPlaces]);
+    } catch (error) {
+      setUserPlaces(userPlaces)
+      setErrorUpdatingPlaces({ message: error.message || 'Failure to update places' })
+    }
+  }
+
+  const handleRemovePlace = useCallback(async function handleRemovePlace() {
+    setUserPlaces((prevPickedPlaces) =>
+      prevPickedPlaces.filter((place) => place.id !== selectedPlace.current.id)
+    );
+
+    try {
+      await updateUserPlaces(userPlaces.filter(place => place.id !== selectedPlace.current.id))
+
+    } catch (error) {
+      setUserPlaces(userPlaces)
+      setErrorUpdatingPlaces({ message: error.message || 'Failed to delete place' })
+
+    }
+
+
+    setModalIsOpen(false);
+  }, [userPlaces]);
+
+  function handleError() {
+    setErrorUpdatingPlaces();
+  }
+
+  return (
+    <>
+      <Modal open={errorUpdatingPlaces} onClose={handleError}>
+        {errorUpdatingPlaces && <ErrorPage
+          title='Error occured'
+          message={errorUpdatingPlaces.message}
+          onConfirm={handleError}
+        />}
+      </Modal>
+      <Modal open={modalIsOpen} onClose={handleStopRemovePlace}>
+        <DeleteConfirmation
+          onCancel={handleStopRemovePlace}
+          onConfirm={handleRemovePlace}
+        />
+      </Modal>
+
+      <header>
+        <img src={logoImg} alt="Stylized globe" />
+        <h1>PlacePicker</h1>
+        <p>
+          Create your personal collection of places you would like to visit or
+          you have visited.
+        </p>
+      </header>
+      <main>
+        {errorUpdatingPlaces && <Error title='An Error occured!' message={errorUpdatingPlaces.message} />}
+        {!errorUpdatingPlaces && <Places
+          title="I'd like to visit ..."
+          fallbackText="Select the places you would like to visit below."
+          isLoading={fetching}
+          loadingText="Fetching places..."
+          places={userPlaces}
+          onSelectPlace={handleStartRemovePlace}
+        />}
+
+        <AvailablePlaces onSelectPlace={handleSelectPlace} />
+      </main>
+    </>
+  );
+}
+
+export default App;
