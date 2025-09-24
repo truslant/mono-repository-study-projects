@@ -44,22 +44,46 @@ class SinglyLinkedList {
         }
         return current
     }
+    shift() {
+        if (this.head === null) { return undefined }
+        let current = this.head;
+        this.head = current.next
+        this.length--
+        if (this.length === 0) {
+            this.tail = null
+        }
+        return current;
+    }
+    unshift(val) {
+        const newNode = new Node(val);
+        if (!this.head) {
+            this.head = newNode;
+            this.tail = newNode;
+        } else {
+            newNode.next = this.head;
+            this.head = newNode;
+        }
+        this.length++;
+        return this;
+    }
 }
 
 const linkedList = new SinglyLinkedList()
 
 linkedList.push(0);
-linkedList.push(1);
-linkedList.push(2);
-linkedList.push(3);
-linkedList.push(4);
+// linkedList.push(1);
+// linkedList.push(2);
+// linkedList.push(3);
+// linkedList.push(4);
 // console.log(linkedList.tail);
-linkedList.pop()
-linkedList.pop()
-linkedList.pop()
-linkedList.pop()
-linkedList.pop()
-linkedList.pop()
+// linkedList.pop()
+// linkedList.pop()
+// linkedList.pop()
+// linkedList.pop()
+// linkedList.pop()
+// linkedList.pop()
+console.log(linkedList.shift());
+
 console.dir(linkedList)
 // console.dir(linkedList.pop())
 // console.log(linkedList.tail);
