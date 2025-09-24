@@ -1,0 +1,1 @@
+alert('Script file was read successfully!')
